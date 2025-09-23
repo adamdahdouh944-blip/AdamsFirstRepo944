@@ -1,0 +1,82 @@
+#Command Line RPG Game PsuedoCode
+
+#GAME FUNCTIONS
+
+#CREATE CHARACTER
+    #Create player stats Dictionary
+hero_stats = {
+    "name" : "Hero",
+    "strength" : 7,
+    "health" : 100.0,
+}
+
+    #Quit Function
+def QuitGame():
+    print ("You Chose to Flee\n")
+    print("GAME OVER")
+    return False
+
+    #Damage Function
+def damage_health(health, damage):
+    pass
+
+    #Player Stats Function
+def get_player_stats():
+    print ("you are: ")
+    for key, value in hero_stats.items():
+        print(f"{key} : {value}")
+
+    #Player move function
+def player_move():
+    pass
+
+    #Player attack function
+def player_attack():
+    pass
+
+
+isPlaying = True
+
+hero_stats["name"] = input ("What is your name?\n")
+
+while(isPlaying):
+    print("Game is Running\n")
+
+      
+    get_player_stats()
+
+    #Create inventory List
+
+#CREATE ENEMIES AND THEIR STATUS VARIABLES
+    #Create Goblin stats Dictionary
+    #Create Dragon Stats Dictionary
+
+#CREATE GRID
+    #Use Nested for loop to create Grid Array 
+    print("\nDisplaying game world (11x11 grid): ")
+    game_world = [['.' for i in range(11)] for j in range(11)]
+
+    #Place the player in the center of the grid
+    player_position = (5, 5)
+    game_world[player_position[0]][player_position[1]] = 'P'
+
+    #Print game world#
+    for row in game_world:
+        for cell in row:
+            print(cell, end=' ')
+        print()
+
+#CREATE PLAYER INPUTS
+    action = input("\nSelect Action: Attack, Move & Flee\n").lower()
+    print(f"Player Action : {action}")
+
+    if (action == "flee"):
+        isPlaying = QuitGame() #<--- isPlaying = False
+    elif(action == "attack"):
+        player_attack()
+    elif(action == "move"):
+        player_move()
+    else:
+        print("Thats not an action you can do")
+        
+
