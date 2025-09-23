@@ -27,13 +27,21 @@ def get_player_stats():
         print(f"{key} : {value}")
 
     #Player move function
-def player_move():
-    pass
+def player_move(y, x):
+    player_position[0] + y
+    player_position[1] + x
+    game_world[player_position[0]][player_position[1]] = 'P'
+    return game_world
 
     #Player attack function
 def player_attack():
     pass
 
+    #Create inventory List
+
+#CREATE ENEMIES AND THEIR STATUS VARIABLES
+    #Create Goblin stats Dictionary
+    #Create Dragon Stats Dictionary
 
 isPlaying = True
 
@@ -42,14 +50,8 @@ hero_stats["name"] = input ("What is your name?\n")
 while(isPlaying):
     print("Game is Running\n")
 
-      
     get_player_stats()
 
-    #Create inventory List
-
-#CREATE ENEMIES AND THEIR STATUS VARIABLES
-    #Create Goblin stats Dictionary
-    #Create Dragon Stats Dictionary
 
 #CREATE GRID
     #Use Nested for loop to create Grid Array 
@@ -72,11 +74,20 @@ while(isPlaying):
 
     if (action == "flee"):
         isPlaying = QuitGame() #<--- isPlaying = False
+    
     elif(action == "attack"):
         player_attack()
+    
     elif(action == "move"):
-        player_move()
+        action = input("\nSelect Direction: North, South, East or West?\n")
+        if(action == "north"):
+            player_position += (1, 0)
+        elif(action == "south"):
+            player_position += (-1, 0)
+        elif(action == "east"):
+            player_position += (0, 1)
+        elif(action == "west"):
+            player_position += (0, -1)
+
     else:
         print("Thats not an action you can do")
-        
-
