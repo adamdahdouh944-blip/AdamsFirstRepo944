@@ -10,6 +10,12 @@ hero_stats = {
     "health" : 100.0,
 }
 
+hero_max_health = 100
+
+    #Create inventory List
+health_potion_strength = 5
+hero_inventory = ["sword", "health potion", "rope"]
+
     #Quit Function
 def QuitGame():
     print ("You Chose to Flee\n")
@@ -20,6 +26,23 @@ def QuitGame():
 def damage_health(health, damage):
     pass
 
+def player_heal(item_name):
+
+    if(hero_inventory.count("health potion") <= 0):
+        print(f"you don't have any {item_name}")
+        return
+
+    print (f"You've used a {item_name} you've restored {health_potion_strength} Health")
+    hero_stats["health"] += health_potion_strength
+
+    if (hero_stats["health"] >= hero_max_health):
+        print(f"You've Reached Max Health")
+        hero_stats["health"] = hero_max_health
+
+    print(f"Your Health is now {hero_stats['health']}")
+    hero_inventory.remove("health potion")
+    print(f"Your inventory is now {hero_inventory}")
+
     #Player Stats Function
 def get_player_stats():
     print ("you are: ")
@@ -28,16 +51,34 @@ def get_player_stats():
 
     #Player move function
 def player_move(y, x):
-    player_position[0] + y
-    player_position[1] + x
-    game_world[player_position[0]][player_position[1]] = 'P'
-    return game_world
+    #player_position[0] + y
+    #player_position[1] + x
+    #game_world[player_position[0]][player_position[1]] = 'P'
+    #return game_world
+    pass
 
     #Player attack function
 def player_attack():
     pass
 
-    #Create inventory List
+#Temp Function
+def damage_player():
+    hero_stats["health"] -= 10
+    print (f"your Health is now {hero_stats['health']}")
+
+def use_item():
+    item_name = input(f"What item do you want to use? {hero_inventory}\n")
+    print (f"The item you want to use is {item_name}")
+    match item_name:
+        case "sword":
+            pass
+        case "health potion":
+            player_heal(item_name)
+            #Remove health potion from inventory
+        case "rope":
+            pass
+        case _:
+            print(f"{item_name} is not in your inventory")
 
 #CREATE ENEMIES AND THEIR STATUS VARIABLES
     #Create Goblin stats Dictionary
@@ -69,25 +110,28 @@ while(isPlaying):
         print()
 
 #CREATE PLAYER INPUTS
-    action = input("\nSelect Action: Attack, Move & Flee\n").lower()
+    action = input("\nSelect Action: Attack, Move, Use or Flee\n").lower()
     print(f"Player Action : {action}")
 
     if (action == "flee"):
         isPlaying = QuitGame() #<--- isPlaying = False
     
     elif(action == "attack"):
-        player_attack()
-    
-    elif(action == "move"):
-        action = input("\nSelect Direction: North, South, East or West?\n")
-        if(action == "north"):
-            player_position += (1, 0)
-        elif(action == "south"):
-            player_position += (-1, 0)
-        elif(action == "east"):
-            player_position += (0, 1)
-        elif(action == "west"):
-            player_position += (0, -1)
+        #player_attack()
+        damage_player() #Temporary
 
+    elif(action == "use"):
+        use_item()
+    elif(action == "move"):
+        pass
+        #action = input("\nSelect Direction: North, South, East or West?\n")
+        #if(action == "north"):
+            #player_position += (1, 0)
+        #elif(action == "south"):
+            #player_position += (-1, 0)
+        #elif(action == "east"):
+            #player_position += (0, 1)
+        #elif(action == "west"):
+            #player_position += (0, -1)         
     else:
         print("Thats not an action you can do")
