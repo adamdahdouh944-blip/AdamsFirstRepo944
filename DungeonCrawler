@@ -7,101 +7,24 @@
 
 from hero import Hero
 from character import character
+from enemy import Enemy
+from Goblin import Goblin
 
-hero_stats = {
-    "name" : "Hero",
-    "strength" : 7,
-    "health" : 100.0,
-}
+#CHARACTER OBJECT CLASSES
+player = Hero()
+gobby = Goblin()
 
-hero_max_health = 100
-
-    #Create inventory List
-health_potion_strength = 5
-hero_inventory = ["sword", "health potion", "rope"]
-
-    #Quit Function
+#Quit Function
 def QuitGame():
     print ("You Chose to Flee\n")
     print("GAME OVER")
     return False
 
-    #Damage Function
-def damage_health(health, damage):
-    pass
-
-def player_heal(item_name):
-
-    if(hero_inventory.count("health potion") <= 0):
-        print(f"you don't have any {item_name}")
-        return
-
-    print (f"You've used a {item_name} you've restored {health_potion_strength} Health")
-    hero_stats["health"] += health_potion_strength
-
-    if (hero_stats["health"] >= hero_max_health):
-        print(f"You've Reached Max Health")
-        hero_stats["health"] = hero_max_health
-
-    print(f"Your Health is now {hero_stats['health']}")
-    hero_inventory.remove("health potion")
-    print(f"Your inventory is now {hero_inventory}")
-
-    #Player Stats Function
-def get_player_stats():
-    print ("you are: ")
-    for key, value in hero_stats.items():
-        print(f"{key} : {value}")
-
-    #Player move function
-def player_move(y, x):
-    #player_position[0] + y
-    #player_position[1] + x
-    #game_world[player_position[0]][player_position[1]] = 'P'
-    #return game_world
-    pass
-
-    #Player attack function
-def player_attack():
-    pass
-
-#Temp Function
-def damage_player():
-    hero_stats["health"] -= 10
-    print (f"your Health is now {hero_stats['health']}")
-
-def use_item():
-    item_name = input(f"What item do you want to use? {hero_inventory}\n")
-    print (f"The item you want to use is {item_name}")
-    match item_name:
-        case "sword":
-            pass
-        case "health potion":
-            player_heal(item_name)
-            #Remove health potion from inventory
-        case "rope":
-            pass
-        case _:
-            print(f"{item_name} is not in your inventory")
-
-#CREATE ENEMIES AND THEIR STATUS VARIABLES
-    #Create Goblin stats Dictionary
-    #Create Dragon Stats Dictionary
-
-isPlaying = True
-
-hero_stats["name"] = input ("What is your name?\n")
-
-while(isPlaying):
-    print("Game is Running\n")
-
-    get_player_stats()
-
-
-#CREATE GRID
+#Game World Generator Function
+def world_generator(x, y):
     #Use Nested for loop to create Grid Array 
     print("\nDisplaying game world (11x11 grid): ")
-    game_world = [['.' for i in range(11)] for j in range(11)]
+    game_world = [['.' for i in range(x)] for j in range(y)]
 
     #Place the player in the center of the grid
     player_position = (5, 5)
@@ -113,6 +36,21 @@ while(isPlaying):
             print(cell, end=' ')
         print()
 
+
+#game loop condition
+isPlaying = True
+
+#player name input
+player.stats["name"] = input ("What is your name?\n")
+
+#GAME LOOP 
+while(isPlaying):
+    print("Game is Running\n")
+
+    player.get_stats()
+
+    world_generator(11, 11)
+
 #CREATE PLAYER INPUTS
     action = input("\nSelect Action: Attack, Move, Use or Flee\n").lower()
     print(f"Player Action : {action}")
@@ -121,21 +59,12 @@ while(isPlaying):
         isPlaying = QuitGame() #<--- isPlaying = False
     
     elif(action == "attack"):
-        #player_attack()
-        damage_player() #Temporary
+        player.attack() #Temporary
 
     elif(action == "use"):
-        use_item()
+        player.use_item()
+
     elif(action == "move"):
-        pass
-        #action = input("\nSelect Direction: North, South, East or West?\n")
-        #if(action == "north"):
-            #player_position += (1, 0)
-        #elif(action == "south"):
-            #player_position += (-1, 0)
-        #elif(action == "east"):
-            #player_position += (0, 1)
-        #elif(action == "west"):
-            #player_position += (0, -1)         
+        pass        
     else:
         print("Thats not an action you can do")

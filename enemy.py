@@ -5,6 +5,3 @@ class Enemy (character):
         super().__init__()
         super().set_stats("Enemy", 5, 30)
 
-
-goblin = Enemy()
-goblin.get_stats()

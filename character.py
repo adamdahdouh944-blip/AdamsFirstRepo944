@@ -11,7 +11,7 @@ class character ():
 
         self.inventory = []
 
-        print(f"This is the Character Class")
+        self.position = (0,0)
 
     def get_stats(self):
         print("Your Stats Are: ")
@@ -22,18 +22,6 @@ class character ():
         self.stats.update({"name" : name})
         self.stats.update({"strength" : strength})
         self.stats.update({"health" : health})
-
-    '''def set_inventory(self, item1, item2, item3): 
-        self.inventory.append(item1)
-        self.inventory.append(item2)
-        self.inventory.append(item3)
- 
-    def set_inventory(self, item1, item2): #Overload 1
-        self.inventory.append(item1)
-        self.inventory.append(item2)
-
-    def set_inventory(self, item): #Overload 2
-        self.inventory.append(item)'''
 
     def addToInventory(self, items): #items is a list
         for item in items:

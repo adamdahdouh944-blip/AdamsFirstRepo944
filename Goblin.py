@@ -20,9 +20,6 @@ class Goblin (Enemy):
            #throw_molotov()
 
 
-gobby = Goblin()
-for i in range(1, 10):
-    gobby.use_item()
     
 
 

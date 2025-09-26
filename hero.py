@@ -36,7 +36,7 @@ class Hero (character):
             case "sword":
                 pass
             case "health potion":
-                self.heal(self, item_name)
+                self.heal("health potion")
                 #Remove health potion from inventory
             case "rope":
                 pass
