@@ -4,11 +4,17 @@
 
 #CREATE CHARACTER
     #Create player stats Dictionary
+
+from hero import Hero
+from character import character
+
 hero_stats = {
     "name" : "Hero",
     "strength" : 7,
     "health" : 100.0,
 }
+
+player = Hero()
 
 hero_max_health = 100
 

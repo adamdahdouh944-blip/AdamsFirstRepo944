@@ -1,36 +1,20 @@
-class Hero ():
+from character import character
+
+
+
+class Hero (character):
     def __init__(self):
-        
-        self.max_health = 100.0
+        super().__init__()
+        super().set_stats("hero", 7, 100)
+        super().set_inventory("sword", "health potion", "rope")
+
         self.health_potion_strength = 5
 
-        self.stats = {
-            "name" : "hero",
-            "strength" : 7,
-            "health" : 100.0
-        }
-
-        self.inventory = ["sword", "health potion", "rope"]
-    
-    def get_stats(self):
-        print("Your Stats Are: ")
-        for key, value in self.stats.items():
-            print(f"{key} : {value}")
+        #self.inventory = ["sword", "health potion", "rope"]
 
     def set_name(self, name):
         self.stats['name'] = name
         self.get_stats()
-
-    def move(self):
-        pass
-    
-    def attack(self):
-        pass
-
-    def take_damage(self, damage):
-        self.stats["health"] -= damage
-        print(f"Your Health is now {self.stats['health']}")
-        pass
 
     def heal(self, item_name):
 
@@ -65,8 +49,14 @@ class Hero ():
 
 
 hero = Hero()
-hero.get_stats()
+'''hero.get_stats()
 hero.set_name("Adam")
 hero.stats["health"] = 70
 hero.heal("health potion")
 print("\n.............................\n")
+print(f"{hero.max_health}\n")
+hero.retreat()'''
+
+Character = character("george", 2, 25)
+Character.get_stats()
+hero.get_stats()
