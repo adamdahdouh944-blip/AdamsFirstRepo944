@@ -4,9 +4,9 @@ class character ():
         self.max_health = 100
 
         self.stats = {
-            "name" : name,
-            "strength" : strength,
-            "health" : health
+            "name",
+            "strength",
+            "health"
         }
 
         self.inventory = ["item 1", "item 2", "item 3"]
