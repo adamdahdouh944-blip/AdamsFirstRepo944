@@ -14,8 +14,6 @@ hero_stats = {
     "health" : 100.0,
 }
 
-player = Hero()
-
 hero_max_health = 100
 
     #Create inventory List

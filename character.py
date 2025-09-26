@@ -4,29 +4,40 @@ class character ():
         self.max_health = 100
 
         self.stats = {
-            "name",
-            "strength",
-            "health"
+            "name" : "character",
+            "strength" : 0,
+            "health" : 0,
         }
 
-        self.inventory = ["item 1", "item 2", "item 3"]
+        self.inventory = []
 
         print(f"This is the Character Class")
 
     def get_stats(self):
         print("Your Stats Are: ")
-        for key, value in self.stats.items():
+        for key, value in dict(self.stats).items():
             print(f"{key} : {value}")
         
     def set_stats(self, name, strength, health):
-        self.stats['name'] = name
-        self.stats['strength'] = strength
-        self.stats['health'] = health
+        self.stats.update({"name" : name})
+        self.stats.update({"strength" : strength})
+        self.stats.update({"health" : health})
 
-    def set_inventory(self, item1, item2, item3):
-        self.inventory["item 1"] = item1
-        self.inventory["item 2"] = item2
-        self.inventory["item 3"] = item3
+    '''def set_inventory(self, item1, item2, item3): 
+        self.inventory.append(item1)
+        self.inventory.append(item2)
+        self.inventory.append(item3)
+ 
+    def set_inventory(self, item1, item2): #Overload 1
+        self.inventory.append(item1)
+        self.inventory.append(item2)
+
+    def set_inventory(self, item): #Overload 2
+        self.inventory.append(item)'''
+
+    def addToInventory(self, items): #items is a list
+        for item in items:
+            self.inventory.append(item)
 
     def retreat(self):
         print(f"you retreated")
