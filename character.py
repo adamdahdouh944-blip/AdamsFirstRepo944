@@ -11,7 +11,7 @@ class character ():
 
         self.inventory = []
 
-        self.position = (0,0)
+        self.position = [0,0]
 
     def get_stats(self):
         print("Your Stats Are: ")
@@ -30,8 +30,29 @@ class character ():
     def retreat(self):
         print(f"you retreated")
 
-    def move(self):
-        pass
+    def move(self, position):
+        action = input(f"Select a direction you want to go: North, South, East and West\n")
+        print(f"The direction you have selected is {action}")
+        match action:
+            case "north":
+                position[0] -= 1
+                print(f"You went North!")
+                return position
+            case "south":
+                position[0] += 1
+                print(f"You went South!")
+                return position
+            case "east":
+                position[1] += 1
+                print(f"You went East!")
+                return position 
+            case "west":
+                position[1] -= 1
+                print(f"You went West")
+                return position
+            case _:
+                print (f"That is not a direction you can go in!")
+                return
     
     def attack(self):
         #if (inRange() < 1):

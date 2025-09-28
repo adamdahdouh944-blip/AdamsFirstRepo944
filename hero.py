@@ -8,6 +8,8 @@ class Hero (character):
 
         self.health_potion_strength = 5
 
+        self.position = [5, 5]
+
     def set_name(self, name):
         self.stats['name'] = name
         self.get_stats()

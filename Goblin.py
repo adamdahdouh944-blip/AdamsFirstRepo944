@@ -7,6 +7,8 @@ class Goblin (Enemy):
         super().set_stats("Goblin", 5, 66)
         super().addToInventory(items = ["knife", "molotov"])
 
+        self.position = [7, 6]
+
     def use_item(self):
        Chance = random.randint(1,10) 
        if (Chance >= 1 and Chance <= 5):

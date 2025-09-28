@@ -27,14 +27,29 @@ def world_generator(x, y):
     game_world = [['.' for i in range(x)] for j in range(y)]
 
     #Place the player in the center of the grid
-    player_position = (5, 5)
-    game_world[player_position[0]][player_position[1]] = 'P'
+
+    update_player_position(game_world, player.position)
+    update_player_position(game_world, gobby.position)
+
 
     #Print game world#
     for row in game_world:
         for cell in row:
             print(cell, end=' ')
         print()
+    
+    return game_world
+    
+
+def update_player_position(game_world, position):
+    if (position == player.position):
+        game_world[position[0]][position[1]] = 'P'
+        return game_world
+    if (position == gobby.position):
+        game_world[position[0]][position[1]] = 'G'
+        return game_world
+    
+
 
 
 #game loop condition
@@ -49,7 +64,7 @@ while(isPlaying):
 
     player.get_stats()
 
-    world_generator(11, 11)
+    game_world = world_generator(11, 11)
 
 #CREATE PLAYER INPUTS
     action = input("\nSelect Action: Attack, Move, Use or Flee\n").lower()
@@ -65,6 +80,8 @@ while(isPlaying):
         player.use_item()
 
     elif(action == "move"):
-        pass        
+        player.position = player.move(player.position)
+        update_player_position(game_world, player.position)
+        print(f"{player.position}")        
     else:
         print("Thats not an action you can do")
