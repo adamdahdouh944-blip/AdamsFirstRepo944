@@ -81,7 +81,9 @@ while(isPlaying):
 
     elif(action == "move"):
         player.position = player.move(player.position)
-        update_player_position(game_world, player.position)
-        print(f"{player.position}")        
+        update_player_position(game_world, player.position)       
     else:
         print("Thats not an action you can do")
+
+#ENEMY TURN     
+    gobby.move(gobby.position)

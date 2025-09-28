@@ -21,6 +21,24 @@ class Goblin (Enemy):
            print(f"Goblin used Molotov")
            #throw_molotov()
 
+    def move(self, position):
+        Chance = random.randint(1, 20)
+        if (Chance >= 1 and Chance <= 5):
+            position[0] -= 1
+            print(f"\n{self.stats['name']} went North!\n")
+            return position
+        if (Chance >= 6 and Chance <= 10):
+            position[0] += 1
+            print(f"\n{self.stats['name']} went South!\n")
+            return position
+        if (Chance >= 11 and Chance <= 15):
+            position[1] += 1
+            print(f"\n{self.stats['name']} went East!\n")
+            return position 
+        if (Chance >= 16 and Chance <= 20):
+            position[1] -= 1
+            print(f"\n{self.stats['name']} went West\n")
+            return position
 
     
 
