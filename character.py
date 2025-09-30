@@ -54,6 +54,29 @@ class character ():
                 print (f"That is not a direction you can go in!")
                 return
     
+    def inRange(self, game_world, position, target_position):
+        #get game_world and user_position
+        position = self.position
+        #check all 8 cells adjacent to the users_position
+        Range = [
+            game_world[position[0] + 1][position[1]],
+            game_world[position[0] - 1][position[1]],
+            game_world[position[0]][position[1] + 1],
+            game_world[position[0]][position[1] - 1],
+            game_world[position[0] + 1][position[1] + 1],
+            game_world[position[0] - 1][position[1] - 1],
+            game_world[position[0] + 1][position[1] - 1],
+            game_world[position[0] - 1][position[1] + 1]
+        ]
+        #if adjacent cells = target_positon
+        for row in Range:
+            for cell in row:
+                if (cell == target_position):
+                    return True
+                else:
+                    return False
+
+
     def attack(self):
         #if (inRange() < 1):
             #print(f"There are no enemies in range\n")
